@@ -1,0 +1,65 @@
+﻿/* ============================================================
+   DROPZONE
+   ============================================================ */
+.dropzone {
+    max-width: 600px;
+    min-height: 250px;
+    border: 3px dashed var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: var(--card-bg);
+    color: var(--fg);
+    user-select: none;
+    padding: 1.5rem;
+}
+
+    .dropzone:hover {
+        border-color: var(--accent);
+        background-color: rgba(13, 110, 253, 0.08);
+    }
+
+body:not(.theme-default) .dropzone:hover {
+    background-color: rgba(77, 163, 255, 0.12);
+}
+
+.dropzone.dragover {
+    border-color: #28a745;
+    background-color: rgba(40, 167, 69, 0.12);
+    transform: scale(1.01);
+}
+
+body:not(.theme-default) .dropzone.dragover {
+    background-color: rgba(40, 167, 69, 0.18);
+}
+
+.dropzone-content {
+    text-align: center;
+    color: var(--muted);
+}
+
+    .dropzone-content p {
+        margin: 0;
+        line-height: 1.5;
+        color: var(--fg);
+    }
+
+    .dropzone-content .small {
+        font-size: 0.85rem;
+        opacity: 0.75;
+        color: var(--muted);
+        margin-top: 0.4rem;
+    }
+
+.dropzone-icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    filter: grayscale(0.15);
+}
+
+body:not(.theme-default) .dropzone-icon {
+    filter: grayscale(0.3) brightness(1.1);
+}

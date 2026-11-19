@@ -1,0 +1,545 @@
+/* ============================================================
+   ПЕРЕМЕННЫЕ ТЕМЫ (по умолчанию - светлая)
+   ============================================================ */
+:root, body.theme-default {
+    --bg: #ffffff;
+    --fg: #212529;
+    --muted: #6c757d;
+    --card-bg: #fafafa;
+    --border: #d0d0d0;
+    --accent: #0d6efd;
+    --navbar-bg: #f8f9fa;
+    --navbar-border: #e0e0e0;
+    --navbar-fg: #212529;
+    --navbar-link: #495057;
+    --navbar-link-hover: #0d6efd;
+    --footer-bg: #f8f9fa;
+    --footer-border: #e0e0e0;
+    --bg-overlay-light: rgba(255, 255, 255, 0.85);
+}
+
+/* ============================================================
+   ТЕМА 1: Misato (Purple/Black)
+   ============================================================ */
+body.theme-misato {
+    --bg: #12001e;
+    --fg: #e6d5ff;
+    --muted: #9a7bb8;
+    --card-bg: #1e0a30;
+    --border: #4a2866;
+    --accent: #b366ff;
+    --navbar-bg: #0a0012;
+    --navbar-border: #3d1f55;
+    --navbar-fg: #f0e6ff;
+    --navbar-link: #c9a3ff;
+    --navbar-link-hover: #ff66cc;
+    --footer-bg: #0a0012;
+    --footer-border: #3d1f55;
+    --bg-overlay-light: rgba(18, 0, 30, 0.70);
+}
+
+/* ============================================================
+   ТЕМА 2: Faye (Teal/Red/Yellow)
+   ============================================================ */
+body.theme-faye {
+    --bg: #042126;
+    --fg: #d4f1f4;
+    --muted: #7eb8c2;
+    --card-bg: #072e35;
+    --border: #115b66;
+    --accent: #fad02c; /* Yellow */
+    --navbar-bg: #021417;
+    --navbar-border: #115b66;
+    --navbar-fg: #fad02c;
+    --navbar-link: #e04b4b; /* Red */
+    --navbar-link-hover: #fad02c;
+    --footer-bg: #021417;
+    --footer-border: #115b66;
+    --bg-overlay-light: rgba(4, 33, 38, 0.75);
+}
+
+/* ============================================================
+   ТЕМА 3: Ice (Blue/White)
+   ============================================================ */
+body.theme-ice {
+    --bg: #0b1d3a;
+    --fg: #e0f0ff;
+    --muted: #8bb3d9;
+    --card-bg: #112a52;
+    --border: #2a5a9e;
+    --accent: #4dc3ff;
+    --navbar-bg: #051023;
+    --navbar-border: #1e427a;
+    --navbar-fg: #ffffff;
+    --navbar-link: #b3e0ff;
+    --navbar-link-hover: #4dc3ff;
+    --footer-bg: #051023;
+    --footer-border: #1e427a;
+    --bg-overlay-light: rgba(11, 29, 58, 0.65);
+}
+
+/* ============================================================
+   ТЕМА 4: Green
+   ============================================================ */
+body.theme-green {
+    --bg: #0a1f14;
+    --fg: #d4f5e0;
+    --muted: #7eb893;
+    --card-bg: #0f2e1d;
+    --border: #1e6640;
+    --accent: #33ff88;
+    --navbar-bg: #04120a;
+    --navbar-border: #145c33;
+    --navbar-fg: #ffffff;
+    --navbar-link: #99ffcc;
+    --navbar-link-hover: #ff4d4d; /* Red accent from image */
+    --footer-bg: #04120a;
+    --footer-border: #145c33;
+    --bg-overlay-light: rgba(10, 31, 20, 0.75);
+}
+
+/* ============================================================
+   ТЕМА 5: Rem & Ram (Pink/Blue)
+   ============================================================ */
+body.theme-rem {
+    --bg: #1a0b2e;
+    --fg: #ffe6f2;
+    --muted: #d49ac2;
+    --card-bg: #261242;
+    --border: #5c2b7a;
+    --accent: #ff80bf; /* Pink */
+    --navbar-bg: #0f051a;
+    --navbar-border: #4a1c6b;
+    --navbar-fg: #ffffff;
+    --navbar-link: #80ccff; /* Blue */
+    --navbar-link-hover: #ff80bf;
+    --footer-bg: #0f051a;
+    --footer-border: #4a1c6b;
+    --bg-overlay-light: rgba(26, 11, 46, 0.75);
+}
+
+/* ============================================================
+   ФОН СТРАНИЦЫ И ИЗОБРАЖЕНИЯ ТЕМ
+   ============================================================ */
+html, body {
+    height: 100%;
+}
+
+body {
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: var(--fg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-image 0.5s ease-in-out, background-color 0.3s ease;
+}
+
+    /* Привязка картинок к темам */
+    body.theme-default {
+        background-image: linear-gradient(var(--bg-overlay-light), var(--bg-overlay-light)), url('/images/background.png');
+    }
+
+    body.theme-misato {
+        background-image: linear-gradient(var(--bg-overlay-light), var(--bg-overlay-light)), url('/images/bg-misato.png');
+    }
+
+    body.theme-faye {
+        background-image: linear-gradient(var(--bg-overlay-light), var(--bg-overlay-light)), url('/images/bg-faye.png');
+    }
+
+    body.theme-ice {
+        background-image: linear-gradient(var(--bg-overlay-light), var(--bg-overlay-light)), url('/images/bg-adelheid.png');
+    }
+
+    body.theme-green {
+        background-image: linear-gradient(var(--bg-overlay-light), var(--bg-overlay-light)), url('/images/bg-zhuang.png');
+    }
+
+    body.theme-rem {
+        background-image: linear-gradient(var(--bg-overlay-light), var(--bg-overlay-light)), url('/images/bg-remandram.png');
+    }
+
+    body > .container {
+        flex: 1;
+    }
+
+/* ============================================================
+   NAVBAR (монотонный, непрозрачный)
+   ============================================================ */
+.navbar-app {
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid var(--navbar-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    opacity: 1;
+}
+
+    .navbar-app .navbar-brand {
+        font-weight: 600;
+        color: var(--navbar-fg) !important;
+        letter-spacing: 0.3px;
+        font-size: 1.15rem;
+    }
+
+    .navbar-app .nav-link {
+        color: var(--navbar-link) !important;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        transition: color 0.15s ease;
+    }
+
+        .navbar-app .nav-link:hover {
+            color: var(--navbar-link-hover) !important;
+        }
+
+    .navbar-app .navbar-toggler {
+        border-color: var(--navbar-border);
+    }
+
+/* Иконка бургера для темных тем */
+body:not(.theme-default) .navbar-app .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer-app {
+    background-color: var(--footer-bg);
+    border-top: 1px solid var(--footer-border);
+    color: var(--muted);
+}
+
+/* ============================================================
+   ИНДИКАТОР WHOIS
+   ============================================================ */
+.whois-status {
+    position: relative;
+    display: inline-block;
+}
+
+.whois-circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #bbb;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s ease;
+}
+
+    .whois-circle.green {
+        background-color: #28a745;
+    }
+
+    .whois-circle.yellow {
+        background-color: #ffc107;
+    }
+
+    .whois-circle.red {
+        background-color: #dc3545;
+    }
+
+    .whois-circle.gray {
+        background-color: #999;
+    }
+
+.whois-dropdown {
+    display: none;
+    position: absolute;
+    top: 26px;
+    right: 0;
+    z-index: 1000;
+    min-width: 220px;
+    padding: 10px;
+    background-color: var(--card-bg);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+    .whois-dropdown.open {
+        display: block;
+    }
+
+.whois-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 14px;
+}
+
+.whois-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #bbb;
+    flex-shrink: 0;
+}
+
+    .whois-dot.green {
+        background-color: #28a745;
+    }
+
+    .whois-dot.red {
+        background-color: #dc3545;
+    }
+
+/* ============================================================
+   СВОРАЧИВАЕМЫЕ СПИСКИ ИНДИКАТОРОВ
+   ============================================================ */
+.indicator-details {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--card-bg);
+    color: var(--fg);
+}
+
+    .indicator-details summary {
+        cursor: pointer;
+        padding: 0.25rem 0;
+        font-size: 1.05rem;
+        color: var(--fg);
+    }
+
+.table-section {
+    margin-top: 1.5rem;
+}
+
+/* ============================================================
+   ОБЩИЕ ТЕКСТЫ И ЗАГОЛОВКИ
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--fg);
+}
+
+p, span, div, label, li {
+    color: inherit;
+}
+
+.text-muted {
+    color: var(--muted) !important;
+}
+
+body:not(.theme-default) .text-warning {
+    color: #ffda6a !important;
+}
+
+body:not(.theme-default) .text-danger {
+    color: #ea868f !important;
+}
+
+body:not(.theme-default) .text-success {
+    color: #75b798 !important;
+}
+
+a {
+    color: var(--accent);
+}
+
+    a:hover {
+        color: var(--accent);
+        opacity: 0.85;
+    }
+
+hr {
+    border-color: var(--border);
+    opacity: 0.5;
+}
+
+/* ============================================================
+   ТАБЛИЦЫ
+   ============================================================ */
+.table {
+    color: var(--fg) !important;
+    border-color: var(--border);
+}
+
+    .table > :not(caption) > * > * {
+        color: var(--fg) !important;
+        background-color: transparent;
+        border-color: var(--border);
+    }
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    color: var(--fg) !important;
+}
+
+body:not(.theme-default) .table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.table-hover > tbody > tr:hover > * {
+    background-color: rgba(0, 0, 0, 0.08) !important;
+    color: var(--fg) !important;
+}
+
+body:not(.theme-default) .table-hover > tbody > tr:hover > * {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ============================================================
+   КНОПКИ
+   ============================================================ */
+body:not(.theme-default) .btn-outline-secondary {
+    color: var(--fg);
+    border-color: var(--muted);
+}
+
+    body:not(.theme-default) .btn-outline-secondary:hover {
+        background-color: var(--border);
+        color: var(--navbar-fg);
+    }
+
+body:not(.theme-default) .btn-outline-primary {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+    body:not(.theme-default) .btn-outline-primary:hover {
+        background-color: var(--accent);
+        color: #000;
+    }
+
+/* ============================================================
+   ALERT'Ы
+   ============================================================ */
+.alert {
+    border-radius: 8px;
+    border-width: 1px;
+}
+/* ============================================================
+   ALERT'Ы
+   ============================================================ */
+.alert {
+    border-radius: 8px;
+    border-width: 1px;
+}
+
+/* Общие стили для всех темных тем */
+body:not(.theme-default) .alert-info {
+    background-color: rgba(13, 110, 253, 0.15);
+    color: #b3d9ff;
+    border-color: rgba(13, 110, 253, 0.4);
+}
+
+body:not(.theme-default) .alert-danger {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #ffb3b3;
+    border-color: rgba(220, 53, 69, 0.4);
+}
+
+body:not(.theme-default) .alert-success {
+    background-color: rgba(25, 135, 84, 0.15);
+    color: #b3ffb3;
+    border-color: rgba(25, 135, 84, 0.4);
+}
+
+body:not(.theme-default) .alert-warning {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #ffe8a1;
+    border-color: rgba(255, 193, 7, 0.4);
+}
+
+body:not(.theme-default) input,
+body:not(.theme-default) textarea,
+body:not(.theme-default) select {
+    background-color: var(--card-bg) !important;
+    color: var(--fg) !important;
+    border-color: var(--border) !important;
+}
+
+    body:not(.theme-default) input::placeholder {
+        color: var(--muted);
+    }
+
+body:not(.theme-default) .form-control:focus {
+    background-color: var(--card-bg);
+    color: var(--fg);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(77, 163, 255, 0.25);
+}
+
+/* ============================================================
+   BADGE
+   ============================================================ */
+body:not(.theme-default) .badge.bg-secondary {
+    background-color: var(--border) !important;
+    color: var(--fg);
+}
+
+/* ============================================================
+   ПРОГРЕСС-БАР
+   ============================================================ */
+.progress {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+body:not(.theme-default) .progress {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   КАРТОЧКИ РЕЗУЛЬТАТОВ (card)
+   ============================================================ */
+.card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--fg) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+body:not(.theme-default) .card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.card-header {
+    background-color: rgba(0, 0, 0, 0.03) !important;
+    border-bottom: 1px solid var(--border) !important;
+    color: var(--fg) !important;
+}
+
+body:not(.theme-default) .card-header {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.card-body {
+    background-color: transparent !important;
+    color: var(--fg) !important;
+}
+
+/* --- Настройка цветов бейджей для темных тем --- */
+body:not(.theme-default) .badge.bg-primary {
+    background-color: #0a58ca !important;
+    color: #fff !important;
+}
+
+body:not(.theme-default) .badge.bg-success {
+    background-color: #146c43 !important;
+    color: #fff !important;
+}
+
+body:not(.theme-default) .badge.bg-danger {
+    background-color: #b02a37 !important;
+    color: #fff !important;
+}
+
+/* Стилизация выпадающего списка тем */
+#themeSelect {
+    background-color: var(--card-bg);
+    color: var(--fg);
+    border-color: var(--border);
+    outline: none;
+}

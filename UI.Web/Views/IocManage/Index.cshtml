@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "IOC Manage";
+}
+
+<div class="container mt-4">
+    <h2>Управление IOC</h2>
+
+    <div class="card mt-3 mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Типы</label>
+                    <div class="d-flex flex-wrap gap-2">
+                        <div class="form-check"><input class="form-check-input type-cb" type="checkbox" value="IP" id="tIP"><label class="form-check-label small" for="tIP">IP</label></div>
+                        <div class="form-check"><input class="form-check-input type-cb" type="checkbox" value="Domain" id="tDom"><label class="form-check-label small" for="tDom">Domain</label></div>
+                        <div class="form-check"><input class="form-check-input type-cb" type="checkbox" value="Url" id="tUrl"><label class="form-check-label small" for="tUrl">URL</label></div>
+                        <div class="form-check"><input class="form-check-input type-cb" type="checkbox" value="MD5" id="tMd5"><label class="form-check-label small" for="tMd5">MD5</label></div>
+                        <div class="form-check"><input class="form-check-input type-cb" type="checkbox" value="SHA1" id="tSha1"><label class="form-check-label small" for="tSha1">SHA1</label></div>
+                        <div class="form-check"><input class="form-check-input type-cb" type="checkbox" value="SHA256" id="tSha256"><label class="form-check-label small" for="tSha256">SHA256</label></div>
+                        <div class="form-check"><input class="form-check-input type-cb" type="checkbox" value="Email" id="tEmail"><label class="form-check-label small" for="tEmail">Email</label></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Вендоры</label>
+                    <div class="d-flex flex-wrap gap-2">
+                        <!-- Провайдеры документов (из VendorDetector) -->
+                        <div class="form-check"><input class="form-check-input vendor-cb" type="checkbox" value="FSB" id="vFSB"><label class="form-check-label small" for="vFSB">FSB</label></div>
+                        <div class="form-check"><input class="form-check-input vendor-cb" type="checkbox" value="FSTEC" id="vFSTEC"><label class="form-check-label small" for="vFSTEC">FSTEC</label></div>
+                        <div class="form-check"><input class="form-check-input vendor-cb" type="checkbox" value="FINCERT" id="vFINCERT"><label class="form-check-label small" for="vFINCERT">FINCERT</label></div>
+                        <div class="form-check"><input class="form-check-input vendor-cb" type="checkbox" value="ITC" id="vITC"><label class="form-check-label small" for="vITC">ITC</label></div>
+                        <div class="form-check"><input class="form-check-input vendor-cb" type="checkbox" value="PT" id="vPT"><label class="form-check-label small" for="vPT">PT</label></div>
+                        <div class="form-check"><input class="form-check-input vendor-cb" type="checkbox" value="OTHER" id="vOTHER"><label class="form-check-label small" for="vOTHER">OTHER</label></div>
+
+                        <!-- Вендоры, которые вытаскивает FinCertExtractor -->
+                        <div class="form-check"><input class="form-check-input vendor-cb" type="checkbox" value="KASPERSKY" id="vKasp"><label class="form-check-label small" for="vKasp">KASPERSKY</label></div>
+                        <div class="form-check"><input class="form-check-input vendor-cb" type="checkbox" value="DRWEB" id="vDrweb"><label class="form-check-label small" for="vDrweb">DRWEB</label></div>
+                        <div class="form-check"><input class="form-check-input vendor-cb" type="checkbox" value="UNKNOWN" id="vUnknown"><label class="form-check-label small" for="vUnknown">UNKNOWN</label></div>
+                    </div>
+                </div>
+                <!-- Текстовое поле значения оставляем, но делаем его чуть шире -->
+                <div class="col-md-3">
+                    <label class="form-label">Значение (содержит)</label>
+                    <input type="text" id="fValue" class="form-control" placeholder="example.com">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Комментарий</label>
+                    <input type="text" id="fComment" class="form-control" placeholder="Атака на...">
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">Дата от</label>
+                    <input type="date" id="fDateFrom" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Дата до</label>
+                    <input type="date" id="fDateTo" class="form-control">
+                </div>
+                <div class="col-md-1 d-flex align-items-end">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="fMulti">
+                        <label class="form-check-label small" for="fMulti">Мульти</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3 d-flex gap-2">
+                <button id="searchBtn" class="btn btn-primary px-4">Поиск</button>
+                <div class="input-group" style="width: auto;">
+                    <select id="exportFormat" class="form-select" style="width: 100px;">
+                        <option value="csv">.CSV</option>
+                        <option value="txt">.TXT</option>
+                    </select>
+                    <button id="exportBtn" class="btn btn-success" disabled>Скачать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="resultsSection" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5>Результаты (первые 1000)</h5>
+            <span id="resultCount" class="badge bg-secondary"></span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Тип</th>
+                        <th>Значение</th>
+                        <th>Вендор</th>
+                        <th>First Seen</th>
+                        <th>Last Seen</th>
+                        <th>Отчетов</th>
+                        <th>Мульти</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody"></tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3" id="paginationControls" style="display:none;">
+            <span id="pageInfo" class="text-muted"></span>
+            <div class="btn-group">
+                <button id="prevPageBtn" class="btn btn-sm btn-outline-secondary">&laquo; Назад</button>
+                <button id="nextPageBtn" class="btn btn-sm btn-outline-secondary">Вперед &raquo;</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/iocmanage.js" asp-append-version="true"></script>
+}

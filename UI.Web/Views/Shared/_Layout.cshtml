@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - IOC Parser</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/dropzone.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/UI.Web.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-app mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    🛡️ IOC Parser
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Nextcloud" asp-action="Index">
+                                NEXTCLOUD SYNC
+                            </a>
+                        </li>
+                        <!-- НОВАЯ ССЫЛКА -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="IocManage" asp-action="Index">
+                                IOC MANAGE
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Whitelist" asp-action="Index">
+                                WHITELIST
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <!-- Индикатор доступности whois -->
+                        <div id="whoisStatus" class="whois-status">
+                            <div class="whois-circle gray" id="whoisCircle" title="Проверка whois..."></div>
+                            <div class="whois-dropdown" id="whoisDropdown">
+                                <div class="whois-item">
+                                    <span class="whois-dot" id="dotRadb"></span>
+                                    <span>whois.radb.net</span>
+                                </div>
+                                <div class="whois-item">
+                                    <span class="whois-dot" id="dotArin"></span>
+                                    <span>whois.arin.net</span>
+                                </div>
+                                <button id="whoisRefresh" class="btn btn-sm btn-outline-secondary mt-2 w-100">
+                                    Обновить
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Переключатель темы -->
+                        <!-- Переключатель темы -->
+                        <select id="themeSelect" class="form-select form-select-sm" style="width: auto; cursor: pointer;">
+                            <option value="theme-default">Simple</option>
+                            <option value="theme-misato">Misato</option>
+                            <option value="theme-faye">Faye</option>
+                            <option value="theme-ice">Adelheid</option>
+                            <option value="theme-green">Zhuang</option>
+                            <option value="theme-rem">Rem & Ram</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer-app mt-5 py-3">
+        <div class="container text-center">
+            <span class="text-muted small">IOC Parser &copy; @DateTime.Now.Year</span>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/scan.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

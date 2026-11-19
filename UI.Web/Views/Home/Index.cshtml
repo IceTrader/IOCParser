@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "IOC Parser";
+}
+
+<div class="container mt-4">
+
+    <!-- НОВОЕ: Поле для общего комментария -->
+    <div class="mb-3 mx-auto" style="max-width: 600px;">
+        <label class="form-label text-muted small mb-1">
+            Комментарий к загрузке <span class="text-danger">*</span>
+        </label>
+        <input type="text" id="uploadComment" class="form-control"
+               placeholder="Обязательное поле. Например: Атака на разработчика N" required>
+    </div>
+
+
+    <!-- DROPZONE -->
+    <div id="dropzone" class="dropzone mx-auto">
+        <div class="dropzone-content">
+            <div class="dropzone-icon">📁</div>
+            <p class="mb-1">Перетащите файлы сюда или кликните для выбора</p>
+            <p class="small mb-0">Поддерживаются: <strong>.csv, .docx, .xlsx, .odt, .txt</strong></p>
+        </div>
+        <!-- Атрибут multiple позволяет выбирать несколько файлов -->
+        <input type="file" id="fileInput" accept=".csv,.docx,.xlsx,.odt,.txt" multiple hidden />
+    </div>
+
+    <!-- НОВОЕ: Кнопка сброса состояния -->
+    <div class="text-center mt-3">
+        <button id="clearResultsBtn" class="btn btn-sm btn-outline-danger" style="display: none;">Очистить результаты</button>
+    </div>
+
+    <!-- ОБЩАЯ ОШИБКА (если что-то пошло не так на уровне сети) -->
+    <div id="error" class="alert alert-danger mt-4" style="display: none;"></div>
+
+    <!-- КОНТЕЙНЕР ДЛЯ РЕЗУЛЬТАТОВ (карточки файлов) -->
+    <div id="resultsContainer" class="mt-4" style="display: none;">
+        <h3>Результаты</h3>
+        <div id="fileResultsList"></div>
+    </div>
+
+    <hr class="my-5" />
+
+    <!-- ПРОВЕРКА IP -->
+    <h3>Проверка IP (AbuseIPDB + proxycheck.io)</h3>
+    <div class="input-group mt-3" style="max-width: 500px;">
+        <input type="text" id="ipInput" class="form-control" placeholder="8.8.8.8" />
+        <button id="ipCheckBtn" class="btn btn-primary">Проверить</button>
+    </div>
+    <div id="ipCheckResult" class="mt-3"></div>
+
+    <hr class="my-5" />
+
+    <!-- ИСТОРИЯ СКАНИРОВАНИЙ -->
+    <h3>История сканирований</h3>
+    <div id="history" class="mt-3">
+        <p class="text-muted">Загрузка...</p>
+    </div>
+
+</div>
+
+@section Scripts {
+    <!-- Мы убрали scan.js из _Layout, поэтому подключаем его здесь -->
+    <script src="~/js/scan.js" asp-append-version="true"></script>
+}

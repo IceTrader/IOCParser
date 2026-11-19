@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Белый список";
+}
+
+<div class="container mt-4">
+    <h2>Белый список (Whitelist)</h2>
+    <p class="text-muted">Индикаторы из этого списка будут игнорироваться при поиске и выгрузках.</p>
+
+    <div class="card mt-3 mb-4">
+        <div class="card-body">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-3">
+                    <label class="form-label">Тип</label>
+                    <select id="wType" class="form-select">
+                        <option value="IP">IP</option>
+                        <option value="Domain">Domain</option>
+                        <option value="Url">URL</option>
+                        <option value="MD5">MD5</option>
+                        <option value="SHA1">SHA1</option>
+                        <option value="SHA256">SHA256</option>
+                        <option value="Email">Email</option>
+                    </select>
+                </div>
+                <div class="col-md-7">
+                    <label class="form-label">Значение</label>
+                    <input type="text" id="wValue" class="form-control" placeholder="Например: 8.8.8.8 или example.com">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Комментарий <span class="text-danger">*</span></label>
+                    <input type="text" id="wComment" class="form-control" placeholder="Причина добавления (обязательно)" required>
+                </div>
+                <div class="col-md-2">
+                    <button id="addBtn" class="btn btn-primary w-100">Добавить</button>
+                </div>
+                <!-- Над таблицей добавляем поиск -->
+                <div class="d-flex justify-content-between align-items-end mb-3">
+                    <div>
+                        <label class="form-label small mb-1 fw-bold">Фильтр по типам:</label>
+                        <div class="d-flex gap-3">
+                            <div class="form-check"><input class="form-check-input w-type-cb" type="checkbox" value="IP" id="wT-IP" checked><label class="form-check-label" for="wT-IP">IP</label></div>
+                            <div class="form-check"><input class="form-check-input w-type-cb" type="checkbox" value="Domain" id="wT-Domain" checked><label class="form-check-label" for="wT-Domain">Domain</label></div>
+                            <div class="form-check"><input class="form-check-input w-type-cb" type="checkbox" value="Url" id="wT-Url" checked><label class="form-check-label" for="wT-Url">URL</label></div>
+                            <div class="form-check"><input class="form-check-input w-type-cb" type="checkbox" value="MD5" id="wT-MD5" checked><label class="form-check-label" for="wT-MD5">MD5</label></div>
+                            <div class="form-check"><input class="form-check-input w-type-cb" type="checkbox" value="SHA256" id="wT-SHA256" checked><label class="form-check-label" for="wT-SHA256">SHA256</label></div>
+                            <!-- Можно добавить остальные -->
+                        </div>
+                    </div>
+
+                    <div style="width: 300px;">
+                        <input type="text" id="wSearch" class="form-control" placeholder="Поиск по значению или комментарию...">
+                    </div>
+                </div>
+            </div>
+            <div id="errorBox" class="alert alert-danger mt-3" style="display:none;"></div>
+        </div>
+    </div>
+
+    <!-- НОВЫЙ БЛОК: Массовая загрузка TXT -->
+    <div class="card mt-3 mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Массовая загрузка (.txt)</h5>
+            <p class="small text-muted">Загрузите текстовый файл, где на каждой новой строке находится один индикатор. Тип и комментарий берутся из формы выше.</p>
+
+            <!-- Сама зона -->
+            <div id="wDropzone" class="dropzone mx-auto" style="min-height: 120px; padding: 1rem;">
+                <div class="dropzone-content">
+                    <div class="dropzone-icon" style="font-size: 1.5rem; margin-bottom: 0.5rem;">📄</div>
+                    <p class="mb-0 small">Перетащите <strong>.txt</strong> сюда или кликните для выбора</p>
+                </div>
+                <input type="file" id="wFileInput" accept=".txt" hidden />
+            </div>
+
+            <!-- Индикатор загрузки -->
+            <div id="wUploadStatus" class="mt-2 text-center text-muted small" style="display: none;">Обработка файла...</div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm table-striped table-hover">
+            <!-- В таблицу добавляем колонку -->
+            <thead>
+                <tr>
+                    <th>Тип</th>
+                    <th>Значение</th>
+                    <th>Комментарий</th> <!-- НОВОЕ -->
+                    <th>Добавлено</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="whitelistBody">
+                <tr><td colspan="4" class="text-center text-muted">Загрузка...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/whitelist.js" asp-append-version="true"></script>
+}

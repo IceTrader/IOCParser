@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "NEXTCLOUD SYNC";
+}
+
+<div class="container mt-4">
+    <h2>Синхронизация с Nextcloud</h2>
+
+    <div class="card mt-4 mb-4">
+        <div class="card-body text-center">
+            <p class="text-muted">Будут загружены все файлы из облака по текущий момент.</p>
+            <button id="syncBtn" class="btn btn-primary btn-lg px-5">Синхронизировать всё</button>
+        </div>
+    </div>
+
+    <!-- Блок предпросмотра -->
+    <div id="previewSection" class="mt-4" style="display: none;">
+        <div class="alert alert-info">
+            <h4>Предпросмотр синхронизации</h4>
+            <p class="mb-0">
+                Найдено файлов: <strong id="previewFilesCount"></strong> |
+                Пропущено (уже в БД): <strong id="previewSkippedCount" class="text-muted"></strong> |
+                Новых IOC: <strong id="previewNewCount" class="text-success"></strong> |
+                Обновится существующих: <strong id="previewExistingCount" class="text-warning"></strong>
+            </p>
+        </div>
+
+        <div id="previewFilesList" class="accordion mb-4"></div>
+
+        <div class="d-flex gap-2">
+            <button id="commitBtn" class="btn btn-success">Подтвердить и добавить в БД</button>
+            <button id="cancelBtn" class="btn btn-outline-danger">Отменить</button>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/nextcloud.js" asp-append-version="true"></script>
+}
